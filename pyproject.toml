@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "judgment-extractor"
+version = "0.1.0"
+description = "Deterministic extraction of bench and author_judge from court decisions"
+requires-python = ">=3.11"
+dependencies = [
+    "pypdf>=3.17.0",
+    "pydantic>=2.0.0",
+    "pymupdf>=1.23.0",
+    "pytesseract>=0.3.10",
+    "Pillow>=10.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4.0",
+    "pytest-cov>=4.1.0",
+]
+
+[project.scripts]
+extract-judgments = "judgment_extractor.cli:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
